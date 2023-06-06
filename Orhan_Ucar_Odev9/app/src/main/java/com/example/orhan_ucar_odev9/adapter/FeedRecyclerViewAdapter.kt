@@ -17,7 +17,7 @@ class FeedRecyclerViewAdapter(private val postList: ArrayList<Post>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: PostHolder, position: Int) {
-        holder.binding.recyclerViewEmailText.text = postList.get(position).email
+        //holder.binding.recyclerViewEmailText.text = postList.get(position).email
         holder.binding.recyclerBaslikText.text = postList.get(position).baslik
         holder.binding.recyclerSehirText.text = postList.get(position).sehir
         holder.binding.recyclerNotlarText.text = postList.get(position).notlar

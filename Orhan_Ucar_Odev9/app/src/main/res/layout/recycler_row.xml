@@ -11,13 +11,14 @@
         android:layout_height="130dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/baseline_add"
+        android:src="@drawable/select"
         android:layout_marginBottom="10dp">
     </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -51,15 +52,6 @@
             android:textColor="@color/black">
         </TextView>
 
-        <TextView
-            android:id="@+id/recyclerViewEmailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="User Email"
-            android:textSize="12sp"
-            android:layout_margin="5dp"
-            android:textColor="@color/black">
-        </TextView>
 
     </LinearLayout>
 
