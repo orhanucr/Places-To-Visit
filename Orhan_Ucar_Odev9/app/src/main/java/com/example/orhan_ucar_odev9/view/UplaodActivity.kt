@@ -62,7 +62,7 @@ class UplaodActivity : AppCompatActivity() {
                     if (auth.currentUser != null) {
                         val postMap = hashMapOf<String, Any>()
                         postMap.put("downloadUrl", downloadUrl)
-                        //postMap.put("userEmail", auth.currentUser!!.email!!)
+                        postMap.put("userEmail", auth.currentUser!!.email!!)
                         postMap.put("baslik", binding.baslikText.text.toString())
                         postMap.put("sehir", binding.sehirText.text.toString())
                         postMap.put("notlar", binding.notlarText.text.toString())
@@ -84,11 +84,15 @@ class UplaodActivity : AppCompatActivity() {
                 }
             }.addOnFailureListener {
                 Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+            }.addOnSuccessListener {
+                val intent = Intent(this, FeedActivity::class.java)
+                startActivity(intent)
+                finish()
             }
+        } else {
+            Toast.makeText(this,"Fotoğraf seçimi zorunludur!",Toast.LENGTH_LONG).show()
         }
-        val intent = Intent(this, FeedActivity::class.java)
-        startActivity(intent)
-        finish()
+
 
     }
 
