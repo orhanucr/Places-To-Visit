@@ -1,11 +1,13 @@
-package com.example.orhan_ucar_odev9
+package com.example.orhan_ucar_odev9.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.orhan_ucar_odev9.adapter.FeedRecyclerViewAdapter
 import com.example.orhan_ucar_odev9.databinding.ActivityFeedBinding
+import com.example.orhan_ucar_odev9.model.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore

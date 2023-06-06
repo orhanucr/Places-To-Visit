@@ -1,8 +1,9 @@
-package com.example.orhan_ucar_odev9
+package com.example.orhan_ucar_odev9.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orhan_ucar_odev9.databinding.RecyclerRowBinding
+import com.example.orhan_ucar_odev9.model.Post
 import com.squareup.picasso.Picasso
 
 

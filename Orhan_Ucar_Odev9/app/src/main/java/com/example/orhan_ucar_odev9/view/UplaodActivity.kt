@@ -1,4 +1,4 @@
-package com.example.orhan_ucar_odev9
+package com.example.orhan_ucar_odev9.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
