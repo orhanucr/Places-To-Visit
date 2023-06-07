@@ -97,7 +97,7 @@ class UplaodActivity : AppCompatActivity() {
                 finish()
             }
         } else {
-            Toast.makeText(this,"Fotoğraf seçimi zorunludur!",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Fotoğraf seçimi zorunludur!", Toast.LENGTH_LONG).show()
         }
 
 

@@ -1,8 +1,10 @@
 package com.example.orhan_ucar_odev9.view
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orhan_ucar_odev9.adapter.FeedRecyclerViewAdapter
 import com.example.orhan_ucar_odev9.databinding.ActivityFeedBinding
 import com.example.orhan_ucar_odev9.model.Post
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,7 +43,7 @@ class FeedActivity : AppCompatActivity() {
 
         binding.imageViewLogout.setOnClickListener {
             auth.signOut()
-            val intent = Intent(this@FeedActivity, MainActivity :: class.java)
+            val intent = Intent(this@FeedActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -52,7 +53,8 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        feedAdapter.setOnItemLongClickListener(object : FeedRecyclerViewAdapter.OnItemLongClickListener {
+        feedAdapter.setOnItemLongClickListener(object :
+            FeedRecyclerViewAdapter.OnItemLongClickListener {
             override fun onItemLongClick(view: View, position: Int) {
                 val post = postArrayList[position]
 
@@ -74,6 +76,40 @@ class FeedActivity : AppCompatActivity() {
 
     }
 
+    //Giriş Yapmış Olan Kullanıcının Kayıtlı Verilerini Alma
+    private fun getData() {
+        val currentUser = auth.currentUser
+        val userEmail = currentUser?.email
+
+        db.collection("Posts")
+            .orderBy("date", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                postArrayList.clear()
+                for (document in querySnapshot.documents) {
+                    val id = document.id
+                    val postUserEmail = document.getString("userEmail")
+                    if (postUserEmail == userEmail) {
+                        val baslik = document.getString("baslik") ?: ""
+                        val sehir = document.getString("sehir") ?: ""
+                        val notlar = document.getString("notlar") ?: ""
+                        val downloadUrl = document.getString("downloadUrl") ?: ""
+
+                        val post = Post(id, postUserEmail!!, baslik, sehir, notlar, downloadUrl)
+                        postArrayList.add(post)
+                    }
+                }
+
+                feedAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Veriler alınırken bir hata oluştu.", Toast.LENGTH_SHORT)
+                    .show()
+                Log.e(TAG, "Error getting documents: ", exception)
+            }
+    }
+
+    /* Tüm Kullanıcıların Oluşturduğu Post'ları Alma
     private fun getData() {
         db.collection("Posts").orderBy("date",Query.Direction.DESCENDING).addSnapshotListener { value, error ->
 
@@ -102,16 +138,20 @@ class FeedActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-    }
+        }*/
 
     private fun deletePost(post: Post) {
         db.collection("Posts").document(post.id).delete()
             .addOnSuccessListener {
+                feedAdapter.notifyDataSetChanged()
                 Toast.makeText(this, "Veri silindi.", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Veriyi silerken bir hata oluştu: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Veriyi silerken bir hata oluştu: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 

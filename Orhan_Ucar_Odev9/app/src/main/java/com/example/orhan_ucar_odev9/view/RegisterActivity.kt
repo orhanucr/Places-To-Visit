@@ -45,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    fun backClicked(view: View){
+    fun backClicked(view: View) {
         val intent = Intent(this@RegisterActivity, MainActivity::class.java)
         startActivity(intent)
         finish()

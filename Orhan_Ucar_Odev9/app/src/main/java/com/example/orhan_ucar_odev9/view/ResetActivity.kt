@@ -22,6 +22,12 @@ class ResetActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        binding.btnVazgec.setOnClickListener {
+            val intent = Intent(this@ResetActivity,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         binding.btnReset.setOnClickListener {
             val emailAddress = binding.remailText.text.toString()
 
@@ -29,14 +35,22 @@ class ResetActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         // Şifre sıfırlama e-postası gönderildi
-                        Toast.makeText(this, "Şifre sıfırlama e-postası gönderildi.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Şifre sıfırlama e-postası gönderildi.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
                         // Şifre sıfırlama e-postası gönderilemedi
-                        Toast.makeText(this, "Şifre sıfırlama e-postası gönderilemedi.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Şifre sıfırlama e-postası gönderilemedi.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
-            val intent = Intent(this@ResetActivity,MainActivity::class.java)
+            val intent = Intent(this@ResetActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
 
