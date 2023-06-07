@@ -12,9 +12,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/select"></ImageView>
-
-
+        android:src="@drawable/select">
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"

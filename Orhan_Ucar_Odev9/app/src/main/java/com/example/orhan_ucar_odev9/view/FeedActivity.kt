@@ -3,11 +3,14 @@ package com.example.orhan_ucar_odev9.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orhan_ucar_odev9.adapter.FeedRecyclerViewAdapter
 import com.example.orhan_ucar_odev9.databinding.ActivityFeedBinding
 import com.example.orhan_ucar_odev9.model.Post
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,6 +52,26 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        feedAdapter.setOnItemLongClickListener(object : FeedRecyclerViewAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(view: View, position: Int) {
+                val post = postArrayList[position]
+
+                val alertDialogBuilder = AlertDialog.Builder(this@FeedActivity)
+                alertDialogBuilder.setMessage("Veriyi silmek istiyor musunuz?")
+                alertDialogBuilder.setPositiveButton("Evet") { dialog, which ->
+                    deletePost(post)
+                    dialog.dismiss()
+                }
+                alertDialogBuilder.setNegativeButton("Hayır") { dialog, which ->
+                    dialog.dismiss()
+                }
+
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
+            }
+        })
+
+
     }
 
     private fun getData() {
@@ -63,13 +86,14 @@ class FeedActivity : AppCompatActivity() {
                         postArrayList.clear()
                         for (documents in documents) {
 
+                            val id = documents.id
                             val userEmail = documents.get("userEmail") as String
                             val baslik = documents.get("baslik") as String
                             val sehir = documents.get("sehir") as String
                             val notlar = documents.get("notlar") as String
                             val downloadUrl = documents.get("downloadUrl") as String
 
-                            val post = Post(userEmail, baslik, sehir, notlar,downloadUrl)
+                            val post = Post(id,userEmail, baslik, sehir, notlar,downloadUrl)
                             postArrayList.add(post)
                         }
 
@@ -80,5 +104,16 @@ class FeedActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun deletePost(post: Post) {
+        db.collection("Posts").document(post.id).delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Veri silindi.", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Veriyi silerken bir hata oluştu: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
 }

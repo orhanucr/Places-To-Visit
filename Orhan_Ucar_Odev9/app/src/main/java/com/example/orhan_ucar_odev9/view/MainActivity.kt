@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.resetPassword.setOnClickListener {
+            val intent = Intent(this@MainActivity, ResetActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun signInClicked(view: View) {
@@ -55,21 +61,9 @@ class MainActivity : AppCompatActivity() {
 
     fun sıgnUpClicked(view: View) {
 
-        val email = binding.emailText.text.toString()
-        val password = binding.passwordText.text.toString()
-
-        if (email.equals("") || password.equals("")) {
-            Toast.makeText(this, "Enter email and password!", Toast.LENGTH_LONG).show()
-        } else {
-            auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-                Toast.makeText(this@MainActivity, "Successful", Toast.LENGTH_LONG).show()
-                val intent = Intent(this@MainActivity, FeedActivity::class.java)
-                startActivity(intent)
-                finish()
-            }.addOnFailureListener {
-                Toast.makeText(this@MainActivity, it.localizedMessage, Toast.LENGTH_LONG).show()
-            }
-        }
+        val intent = Intent(this@MainActivity, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
 
     }
 }

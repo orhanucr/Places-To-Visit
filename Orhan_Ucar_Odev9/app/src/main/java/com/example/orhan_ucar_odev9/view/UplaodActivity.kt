@@ -45,6 +45,13 @@ class UplaodActivity : AppCompatActivity() {
         firestore = Firebase.firestore
         storage = Firebase.storage
         registerLauncher()
+
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, FeedActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     fun uploadButton(view: View) {

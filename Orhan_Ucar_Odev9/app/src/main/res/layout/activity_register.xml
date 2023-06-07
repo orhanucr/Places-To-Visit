@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.RegisterActivity">
 
     <EditText
         android:id="@+id/emailText"
@@ -31,36 +31,25 @@
         app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
     <Button
-        android:id="@+id/signInButton"
+        android:id="@+id/registerButton"
         android:layout_width="103dp"
         android:layout_height="58dp"
         android:layout_marginTop="45dp"
         android:backgroundTint="#29ABBA"
-        android:onClick="signInClicked"
-        android:text="Sıgn In"
+        android:onClick="registerClicked"
+        android:text="Sıgn Up"
         app:layout_constraintEnd_toEndOf="@+id/passwordText"
         app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
     <Button
-        android:id="@+id/sıgnUpButton"
+        android:id="@+id/BackButton"
         android:layout_width="103dp"
         android:layout_height="58dp"
         android:layout_marginTop="45dp"
         android:backgroundTint="#29ABBA"
-        android:onClick="sıgnUpClicked"
-        android:text="Sıgn Up"
+        android:onClick="backClicked"
+        android:text="Back"
         app:layout_constraintStart_toStartOf="@+id/passwordText"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
-
-    <TextView
-        android:id="@+id/resetPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Şifremi Unuttum-->"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/passwordText"
         app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_add"
+        app:srcCompat="@drawable/gallery"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -64,7 +64,16 @@
         android:layout_marginTop="50dp"
         android:onClick="uploadButton"
         android:text="Upload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/notlarText"
+        app:layout_constraintTop_toBottomOf="@+id/notlarText" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="141dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
+        android:onClick="uploadButton"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="@+id/notlarText"
         app:layout_constraintTop_toBottomOf="@+id/notlarText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
