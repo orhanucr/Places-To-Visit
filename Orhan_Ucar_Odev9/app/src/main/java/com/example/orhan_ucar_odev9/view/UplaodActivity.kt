@@ -60,6 +60,12 @@ class UplaodActivity : AppCompatActivity() {
         val reference = storage.reference
         val imageReference = reference.child("images").child(imageName)
 
+        // Kullanıcı resim seçmediyse, varsayılan bir resim atama işlemi
+        if (selectedPicture == null) {
+            val defaultImageUri = Uri.parse("android.resource://com.example.orhan_ucar_odev9/drawable/select")
+            selectedPicture = defaultImageUri
+        }
+
         if (selectedPicture != null) {
             imageReference.putFile(selectedPicture!!).addOnSuccessListener() {
                 val uploadPictureReference = storage.reference.child("images").child(imageName)

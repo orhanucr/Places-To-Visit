@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
 
-
+        //Eğer kullanıcı daha önce giriş yapmışsa direkt olarak FeedActivity sayfası açılsın
         if (currentUser != null) {
             val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
