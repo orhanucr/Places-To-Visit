@@ -4,9 +4,10 @@
 Bu örnek projede, kullanıcı mail ve password ile Firebase veritabanına kayıt olur. Kayıtlı kullanıcı mail ve password yardımı ile uygulamaya giriş yapar ve gezilecek yerleri not eder. Eklenen yerler anasayfa da en son eklenen en üstte görünecek şekilde RecyclerView içinde kullanıcıya gösterilir, kullanıcı uzun tıklama işlemi gerçekleştirerek eklenen veriyi silebilir. Gezilecek yerler için kullanıcı Resim- Başlık- Şehir- Notlar bilgilerini girer. Kullanıcı resim eklemek istemezse default olarak bir resim eklenir. Eğer kullanıcı şifresini unutursa Şifre Yenileme Ekranı'ndan mail adresine bir şifre yenileme e-postası gönderilir.
 ## Kütüphaneler ve Özellikler
 - Firebase Auth
+- Firebase Analytics
 - Firebase Firestore
 - Firebase Storage
-- Firebase Analytics
+- Firebase Realtime Database
 - Picasso
 - RecyclerView
 <h2>İzinler</h2>
